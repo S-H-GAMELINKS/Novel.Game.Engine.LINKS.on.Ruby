@@ -5,6 +5,12 @@
 #DXRubyの読み込み
 require 'dxruby'
 
+#セーブ処理処理の呼び出し
+require_relative 'savedata_save'
+
+#ロード処理処理の呼び出し
+require_relative 'savedata_load'
+
 #gamemenuメソッドの定義
 def gamemenu
 
@@ -52,24 +58,16 @@ Window.loop do
 	#SAVEを選択した際の処理
 	if Input.key_push?(K_RETURN) && menu_y == 300 then
 
-		#ルート管理変数の書き込み（セーブデータの書き込み)
-		File.write("DATA/SAVE/savedata_choice.txt", $choice.to_s)
-
-		#スクリプト管理変数の書き込み（セーブデータの書き込み)
-		File.write("DATA/SAVE/savedata_lineno.txt", $lineno.to_s)
-
+		#セーブ処理
+		savedata_save()
 		break
 	end
 
 	#LOADを選択した際の処理
 	if Input.key_push?(K_RETURN) && menu_y == 350 then
 
-		#ルート管理変数への代入（セーブデータの読み込み)
-		$choice = File.open("DATA/SAVE/savedata_choice.txt", "r").read.to_i
-
-		#スクリプト管理変数への代入（セーブデータの読み込み)
-		$lineno = File.open("DATA/SAVE/savedata_lineno.txt", "r").read.to_i
-
+		#ロード処理
+		savedata_load()
 		break
 	end
 

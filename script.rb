@@ -8,6 +8,9 @@ require 'dxruby'
 #gamemenuメソッドの読み込み
 require_relative 'gamemenu'
 
+#savedata_screenshotメソッドの読み込み
+require_relative 'savedata_screenshot'
+
 #scriptメソッドの定義
 def script
 
@@ -123,6 +126,12 @@ string.each_line do |line|
 		bgm.set_volume($bgm_vol, 0)
 		bgm.play
 		lineno += 1
+
+	#キャラクター名の描画
+	when /chara_name/
+
+		#キャラクター名の描画
+		Window.draw_font(30, 450, line, font, z:4)
 
 	#選択肢の描画
 	when /choice/
@@ -322,16 +331,24 @@ string.each_line do |line|
 				#スクリプト行数の記憶
 				$lineno = lineno
 
+				#セーブデータ用のスクリーンショット変数をONに
+				$savedata_screenshot = 1
+
+				#セーブデータ用スクリーンショット取得
+				savedata_screenshot()
+
 				#ゲームメニューの呼び出し
 				gamemenu()
 
 				#行数を呼び出す
 				lineno = $lineno
-
 			end
 	
 			#エスケープキーでゲーム終了
 			if Input.key_push?(K_ESCAPE) then
+
+				#セーブデータ用スクリーンショットの削除
+				File.delete("DATA/SAVE/savedata.png")
 				exit
 			end
 

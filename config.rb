@@ -18,7 +18,8 @@ menu_y = 100
 	#•`‰æƒ‹[ƒv
 	Window.loop do
 
-		#Šeíİ’è•`‰æ
+#		Window.draw(0, 0, background)
+
 		Window.draw_font(100, 100, "BGM‰¹—Ê", font, z:4)
 		Window.draw_font(100, 150, "SE‰¹—Ê", font, z:4)
 		Window.draw_font(100, 200, "QUIT", font, z:4)

@@ -25,6 +25,9 @@ $bgm_vol = 230
 #SE音量変数
 $se_vol = 230
 
+#セーブデータ用スクリーンショット取得変数
+$savedata_screenshot = 0
+
 #メインループ
 Window.loop do
 

@@ -8,6 +8,9 @@ require 'dxruby'
 #コンフィグ処理の呼び出し
 require_relative 'config'
 
+#ロード処理処理の呼び出し
+require_relative 'savedata_load'
+
 #titleメソッドの定義
 def title
 
@@ -37,7 +40,7 @@ Window.loop do
 
 	#カーソルのキー操作（↑キー）
 	if Input.key_push?(K_UP) then
-		menu_y -= 50
+		menu_y = menu_y - 50
 
 		if menu_y <= 250 then
 			menu_y = 450
@@ -46,7 +49,7 @@ Window.loop do
 
 	#カーソルのキー操作（↓キー）
 	if Input.key_push?(K_DOWN) then
-		menu_y += 50
+		menu_y = menu_y + 50
 
 		if menu_y >= 500 then
 			menu_y = 300
@@ -64,12 +67,8 @@ Window.loop do
 	#LOADを選択した際の処理
 	if Input.key_push?(K_RETURN) && menu_y == 350 then
 
-		#ルート管理変数への代入（セーブデータの読み込み）
-		$choice = File.open("DATA/SAVE/savedata_choice.txt", "r").read.to_i
-
-		#スクリプト管理変数への代入（セーブデータの読み込み)
-		$lineno = File.open("DATA/SAVE/savedata_lineno.txt", "r").read.to_i
-
+		#ロード処理
+		savedata_load()
 		break
 	end
 
