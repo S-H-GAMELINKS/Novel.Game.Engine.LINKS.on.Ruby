@@ -1,0 +1,102 @@
+# coding: shift_jis
+#ƒmƒxƒ‹ƒQ[ƒ€ƒGƒ“ƒWƒ“uLINKSv on Ruby
+#ƒXƒNƒŠƒvƒgƒ^ƒOˆ—(”wŒi‰æ‘œ)ƒ\[ƒX
+
+#DXRuby‚Ì“Ç‚İ‚İ
+require 'dxruby'
+
+class ScriptSwitch_bg
+
+	#‰Šú‰»
+	def initialize(text = "", bg = Image.new(640, 480, [0, 0, 0, 0]))
+		@text = text
+		@bg = bg
+	end
+
+	def load_bg
+
+		case @text
+			#”wŒi‰æ‘œ01‚Ì•`‰æ
+			when /bg01/
+				@bg = MaterialLoad_bg.new("BG01").load
+
+			#”wŒi‰æ‘œ02‚Ì•`‰æ
+			when /bg02/
+				@bg = MaterialLoad_bg.new("BG02").load
+
+			#”wŒi‰æ‘œ03‚Ì•`‰æ
+			when /bg03/
+				@bg = MaterialLoad_bg.new("BG03").load
+
+			#”wŒi‰æ‘œ04‚Ì•`‰æ
+			when /bg04/
+				@bg = MaterialLoad_bg.new("BG04").load
+
+			#”wŒi‰æ‘œ05‚Ì•`‰æ
+			when /bg05/
+				@bg = MaterialLoad_bg.new("BG05").load
+
+			#”wŒi‰æ‘œ06‚Ì•`‰æ
+			when /bg06/
+				@bg = MaterialLoad_bg.new("BG06").load
+
+			#”wŒi‰æ‘œ07‚Ì•`‰æ
+			when /bg07/
+				@bg = MaterialLoad_bg.new("BG07").load
+
+			#”wŒi‰æ‘œ08‚Ì•`‰æ
+			when /bg08/
+				@bg = MaterialLoad_bg.new("BG08").load
+
+			#”wŒi‰æ‘œ09‚Ì•`‰æ
+			when /bg09/
+				@bg = MaterialLoad_bg.new("BG09").load
+
+			#”wŒi‰æ‘œ10‚Ì•`‰æ
+			when /bg10/
+				@bg = MaterialLoad_bg.new("BG10").load
+
+			#”wŒi‰æ‘œ11‚Ì•`‰æ
+			when /bg11/
+				@bg = MaterialLoad_bg.new("BG11").load
+
+			#”wŒi‰æ‘œ12‚Ì•`‰æ
+			when /bg12/
+				@bg = MaterialLoad_bg.new("BG12").load
+
+			#”wŒi‰æ‘œ13‚Ì•`‰æ
+			when /bg13/
+				@bg = MaterialLoad_bg.new("BG13").load
+
+			#”wŒi‰æ‘œ14‚Ì•`‰æ
+			when /bg14/
+				@bg = MaterialLoad_bg.new("BG14").load
+
+			#”wŒi‰æ‘œ15‚Ì•`‰æ
+			when /bg15/
+				@bg = MaterialLoad_bg.new("BG15").load
+
+			#”wŒi‰æ‘œ16‚Ì•`‰æ
+			when /bg16/
+				@bg = MaterialLoad_bg.new("BG16").load
+
+			#”wŒi‰æ‘œ17‚Ì•`‰æ
+			when /bg17/
+				@bg = MaterialLoad_bg.new("BG17").load
+
+			#”wŒi‰æ‘œ18‚Ì•`‰æ
+			when /bg18/
+				@bg = MaterialLoad_bg.new("BG18").load
+
+			#”wŒi‰æ‘œ19‚Ì•`‰æ
+			when /bg19/
+				@bg = MaterialLoad_bg.new("BG19").load
+
+			#”wŒi‰æ‘œ20‚Ì•`‰æ
+			when /bg20/
+				@bg = MaterialLoad_bg.new("BG20").load
+		end
+
+		return @bg
+	end
+end

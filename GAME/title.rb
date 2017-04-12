@@ -2,15 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #タイトル処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
-#コンフィグ処理の呼び出し
-require_relative 'CONFIG/config'
-
-#ロード処理処理の呼び出し
-require_relative 'SAVE_LOAD/savedata_load'
-
 #titleメソッドの定義
 def title
 

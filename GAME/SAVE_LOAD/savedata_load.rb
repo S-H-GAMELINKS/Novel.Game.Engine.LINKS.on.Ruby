@@ -2,9 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #ゲームメニュー処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
 #セーブデータ１のロード
 def savedata1_load
 

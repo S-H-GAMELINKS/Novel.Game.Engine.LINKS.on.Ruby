@@ -2,18 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #ゲームメニュー処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
-#セーブ処理処理の呼び出し
-require_relative 'SAVE_LOAD/savedata_save'
-
-#ロード処理処理の呼び出し
-require_relative 'SAVE_LOAD/savedata_load'
-
-#コンフィグ処理処理の呼び出し
-require_relative 'CONFIG/config'
-
 #gamemenuメソッドの定義
 def gamemenu
 
@@ -23,14 +11,8 @@ def gamemenu
 	#フォントサイズ定義
 	font = Font.new(24)
 
-	#背景画像の読み込み
-	title_background = Image.load("DATA/BG/TITLE.png")
-
 	#描画ループ
 	Window.loop do
-
-		#背景画像の描画
-		Window.draw(0, 0, title_background)
 
 		#各種ゲームメニューの描画
 		Window.draw_font(500, 250, "TITLE", font)

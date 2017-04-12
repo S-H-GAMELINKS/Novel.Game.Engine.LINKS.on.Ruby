@@ -1,6 +1,3 @@
-# coding: shift_jis
-#ノベルゲームエンジン「LINKS」 on Ruby
-#選択肢描画処理ソース
 
 class ChoiceDraw
 

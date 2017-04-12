@@ -2,9 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #背景素材読込処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
 class MaterialLoad_bg
 
 	def initialize(bg_path = "no image", bg = Image.new(640, 480, [0, 0, 0, 0]))

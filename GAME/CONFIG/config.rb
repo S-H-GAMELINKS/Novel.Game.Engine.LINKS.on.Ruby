@@ -2,9 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #コンフィグ処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
 #configメソッド
 def config
 
@@ -13,12 +10,8 @@ font = Font.new(26)
 #カーソル初期位置
 menu_y = 100
 
-#background = Image.load("DATA/BG/TITLE.png")
-
 	#描画ループ
 	Window.loop do
-
-#		Window.draw(0, 0, background)
 
 		Window.draw_font(100, 100, "BGM音量", font, z:4)
 		Window.draw_font(100, 150, "SE音量", font, z:4)
@@ -36,13 +29,11 @@ menu_y = 100
 			if menu_y == 100 && $bgm_vol != 230 then
 				
 				$bgm_vol = $bgm_vol + 10
-
 			end
 
 			if menu_y == 150 && $se_vol != 230 then
 				
 				$se_vol = $se_vol + 10
-
 			end
 
 		end
@@ -53,13 +44,11 @@ menu_y = 100
 			if menu_y == 100 && $bgm_vol != 0 then
 
 				$bgm_vol = $bgm_vol - 10
-
 			end
 
 			if menu_y == 150 && $se_vol != 0 then
 
-				$bgm_vol = $bgm_vol - 10
-
+				$se_vol = $se_vol - 10
 			end
 		end
 
@@ -81,10 +70,9 @@ menu_y = 100
 			end
 		end
 
+		#QUITを選択時の処理
 		if Input.key_push?(K_RETURN) && menu_y == 200 then
-
 			break
-
 		end
 
 		#エスケープキーで終了
@@ -92,7 +80,5 @@ menu_y = 100
 			exit
 			break
 		end
-
 	end
-
 end

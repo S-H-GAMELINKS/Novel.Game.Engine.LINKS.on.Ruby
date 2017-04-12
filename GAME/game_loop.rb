@@ -2,30 +2,8 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #ゲームループ処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
-#素材読込
-require_relative 'game_loop_h'
-
 #scriptメソッドの定義
 def script
-
-#フォントサイズの設定
-font = Font.new(26)
-
-#各種素材の読み込み	
-se01 = Sound.new("DATA/SE/SE01.wav")
-bgm01 = Sound.new("DATA/BGM/BGM01.wav")
-
-#各種素材の初期化
-bg  = Image.new(640, 480, [0, 0, 0, 0])
-char  = Image.new(640, 480, [0, 0, 0, 0])
-bgm = 0
-se = 0
-
-#ウインドウ画像作成
-window = Image.new(640, 200, [255, 0, 0, 0])
 
 #スクリプトデータ読込処理
 string = ScriptRead.new.read
@@ -34,7 +12,6 @@ string = ScriptRead.new.read
 root = ScriptRoot.new.root
 
 lineno = 0
-
 choice = 0
 
 #一行ずつテキストデータを描画（タグにて描画処理も行う）
@@ -42,178 +19,71 @@ string.each_line do |line|
 
 	case line
 
-	#背景画像01の描画
-	when /bg01/
-
-		bg01 = MaterialLoad_bg.new("BG01")
-		bg = bg01.load
+	#立ち絵処理
+	when /\Achar\d\d/
+		$char = ScriptSwitch_char.new(line).load_char
 		lineno += 1
 
-	#背景画像02の描画
-	when /bg02/
-
-		bg02 = MaterialLoad_bg.new("BG02")
-		bg = bg02.load
+	#背景画像処理
+	when /\Abg\d\d/
+		$bg = ScriptSwitch_bg.new(line).load_bg
 		lineno += 1
 
-	#立ち絵01の描画
-	when /char01/
-
-		char01 = MaterialLoad_char.new("CHAR01")
-		char = char01.load
+	#効果音処理
+	when /\Ase\d\d/
+		$se = ScriptSwitch_se.new(line).load_se
 		lineno += 1
 
-	#立ち絵02の描画
-	when /char02/
-
-		char02 = MaterialLoad_char.new("CHAR02")
-		char = char02.load
+	#BGM処理
+	when /\Abgm\d\d/
+		$bgm = ScriptSwitch_bgm.new(line).load_bgm
 		lineno += 1
 
 	#立ち絵の削除
 	when /char_delete/
-
 		char = Image.new(640, 480, [0, 0, 0, 0])
 		lineno += 1
-
-	#効果音01の再生
-	when /se01/
-
-		se = se01
-		se.set_volume($se_vol, 0)
-		se.play
-		lineno += 1
-
-	#BGM01の再生
-	when /bgm01/
-
-		bgm = bgm01
-		bgm.set_volume($bgm_vol, 0)
-		bgm.play
-		lineno += 1
-
-	#キャラクター名の描画
-	when /chara_name/
-
-		#キャラクター名の描画
-		Window.draw_font(30, 450, line, font, z:4)
 
 	#選択肢の描画
 	when /choice/
 
 		lineno += 1
+		$bgm.stop
 
-		bgm.stop
-
-		#カーソルの高さ
-		menu_y = 350
-	
-		#選択肢の読み込み
-		case $choice
-
-			#$choice = 1の時
-			when 1
-
-			choice1 = File.open("DATA/STR/CHOICE/choice1.txt", "r")
-			choice2 = File.open("DATA/STR/CHOICE/choice2.txt", "r")
-			draw_choice1 = choice1.read
-			draw_choice2 = choice2.read
-
-			#$choice = 2の時
-			when 2
-
-			choice1 = File.open("DATA/STR/CHOICE/choice3.txt", "r")
-			choice2 = File.open("DATA/STR/CHOICE/choice4.txt", "r")
-			draw_choice1 = choice1.read
-			draw_choice2 = choice2.read
-
-			#$choice = 3の時
-			when 3
-
-			choice1 = File.open("DATA/STR/CHOICE/choice5.txt", "r")
-			choice2 = File.open("DATA/STR/CHOICE/choice6.txt", "r")
-			draw_choice1 = choice1.read
-			draw_choice2 = choice2.read
-
-			else
-
-			end
-
-		#選択肢描画オブジェクトの生成
-		choice = ChoiceDraw.new(bg, char, window, draw_choice1, draw_choice2, font)
+		choice1 = ChoiceDraw.new(0, 0, 0, 0, 0, 0).load_choice1
+		choice2 = ChoiceDraw.new(0, 0, 0, 0, 0, 0).load_choice2
 		
+		#カーソルの高さ
+		$menu_y = 350
+	
+		#選択肢描画オブジェクトの生成
+		choice = ChoiceDraw.new($bg, $char, $window, choice1, choice2, $font)
+		choice_keymove = ChoiceKeyMove.new($menu_y)
+
+		choice_temp = $choice
+
 		#選択肢描画ループ
 		Window.loop do
 
-			#各種素材の描画
+			#選択肢の描画
 			choice.draw_choice
 
+			#選択肢のキー操作
+			choice_keymove.key_move
+
 			#カーソルの描画
-			Window.draw_font(150, menu_y, "□", font, z:4)
+			Window.draw_font(150, $menu_y, "□", $font, z:4)
 
-			#choice1を選択した際の処理
-			if Input.key_push?(K_RETURN) && menu_y == 350 then
-
-				if $choice == 1 then
-					$choice = 2
-					break
-				end
-
-				if $choice == 2 then
-					$choice = 4
-					break
-				end
-
-				if $choice == 3 then
-					$choice = 6
-					break
-				end
-
-			end
-
-			#Lchoice2を選択した際の処理
-			if Input.key_push?(K_RETURN) && menu_y == 380 then
-
-				if $choice == 1 then
-					$choice = 3
-					break
-				end
-
-				if $choice == 2 then
-					$choice = 5
-					break
-				end
-
-				if $choice == 3 then
-					$choice = 7
-					break
-				end
-
-			end
-
-			#カーソルのキー操作（↑キー）
-			if Input.key_push?(K_UP) then
-				menu_y -= 30
-
-				if menu_y <= 320 then
-					menu_y = 380
-				end
-			end
-
-			#カーソルのキー操作（↓キー）
-			if Input.key_push?(K_DOWN) then
-				menu_y += 30
-
-				if menu_y >= 410 then
-					menu_y = 350
-				end
+			#選択肢を選んだあとループを抜ける
+			if choice_temp != $choice then
+				break
 			end
 
 			#バックスペースキーでゲームメニューを呼び出す
 			if Input.key_push?(K_BACK) then
 
 				#BGMの再生停止
-				bgm.stop
+				$bgm.stop
 				
 				#ルート管理変数の記憶
 				choice = $choice
@@ -230,6 +100,12 @@ string.each_line do |line|
 
 			#エスケープキーでゲーム終了
 			if Input.key_push?(K_ESCAPE) then
+
+				#セーブデータ用スクリーンショットの削除
+				if File.exist?("DATA/SAVE/savedata.png") then
+					File.delete("DATA/SAVE/savedata.png")
+				end
+
 				exit
 			end
 		end
@@ -246,7 +122,7 @@ string.each_line do |line|
 	if lineno >= $lineno then
 
 		#スクリプト＆各種素材描画用
-		script_line = ScriptDraw.new(line, bg, char, window, font)
+		script_line = ScriptDraw.new(line, $bg, $char, $window, $font)
 
 		Window.loop do
 
@@ -257,7 +133,7 @@ string.each_line do |line|
 			if Input.key_push?(K_BACK) then
 				
 				#BGMの再生停止
-				bgm.stop
+				$bgm.stop
 				
 				#ルート管理変数の記憶
 				choice = $choice
@@ -282,7 +158,10 @@ string.each_line do |line|
 			if Input.key_push?(K_ESCAPE) then
 
 				#セーブデータ用スクリーンショットの削除
-				File.delete("DATA/SAVE/savedata.png")
+				if File.exist?("DATA/SAVE/savedata.png") then
+					File.delete("DATA/SAVE/savedata.png")
+				end
+
 				exit
 			end
 
@@ -291,9 +170,7 @@ string.each_line do |line|
 				break
 			end
 		end
-
 	end
-
 	end
 
 	#ゲームメニュー起動後に描画画面に戻す
@@ -304,12 +181,10 @@ string.each_line do |line|
 
 	#セーブデータ読込時にループを抜け出す。
 	if root != $choice then
-
 		lineno = 0
 		$lineno = 0
 		break
 	end
 end
-
 
 end

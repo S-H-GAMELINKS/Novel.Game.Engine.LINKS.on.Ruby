@@ -2,9 +2,6 @@
 #ノベルゲームエンジン「LINKS」 on Ruby
 #立ち絵素材読込処理ソース
 
-#DXRubyの読み込み
-require 'dxruby'
-
 class MaterialLoad_char
 
 	def initialize(char_path = "no image", char = Image.new(640, 480, [0, 0, 0, 0]))
