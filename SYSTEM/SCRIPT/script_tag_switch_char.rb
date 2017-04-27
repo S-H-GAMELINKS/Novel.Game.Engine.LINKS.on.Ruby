@@ -1,0 +1,102 @@
+# coding: shift_jis
+#ƒmƒxƒ‹ƒQ[ƒ€ƒGƒ“ƒWƒ“uLINKSv on Ruby
+#ƒXƒNƒŠƒvƒgƒ^ƒOˆ—(—§‚¿ŠG)ƒ\[ƒX
+
+#DXRuby‚Ì“Ç‚İ‚İ
+require 'dxruby'
+
+class ScriptSwitch_char
+
+	#‰Šú‰»
+	def initialize(text = "", char = Image.new(640, 480, [0, 0, 0, 0]))
+		@text = text
+		@char = char
+	end
+
+	def load_char
+
+		case @text
+			#—§‚¿ŠG01‚Ì•`‰æ
+			when /char01/
+				@char = MaterialLoad_char.new("CHAR01").load
+
+			#—§‚¿ŠG02‚Ì•`‰æ
+			when /char02/
+				@char = MaterialLoad_char.new("CHAR02").load
+
+			#—§‚¿ŠG03‚Ì•`‰æ
+			when /char03/
+				@char = MaterialLoad_char.new("CHAR03").load
+
+			#—§‚¿ŠG04‚Ì•`‰æ
+			when /char04/
+				@char = MaterialLoad_char.new("CHAR04").load
+
+			#—§‚¿ŠG05‚Ì•`‰æ
+			when /char05/
+				@char = MaterialLoad_char.new("CHAR05").load
+
+			#—§‚¿ŠG06‚Ì•`‰æ
+			when /char06/
+				@char = MaterialLoad_char.new("CHAR06").load
+
+			#—§‚¿ŠG07‚Ì•`‰æ
+			when /char07/
+				@char = MaterialLoad_char.new("CHAR07").load
+
+			#—§‚¿ŠG08‚Ì•`‰æ
+			when /char08/
+				@char = MaterialLoad_char.new("CHAR08").load
+
+			#—§‚¿ŠG09‚Ì•`‰æ
+			when /char09/
+				@char = MaterialLoad_char.new("CHAR09").load
+
+			#—§‚¿ŠG10‚Ì•`‰æ
+			when /char10/
+				@char = MaterialLoad_char.new("CHAR10").load
+
+			#—§‚¿ŠG11‚Ì•`‰æ
+			when /char11/
+				@char = MaterialLoad_char.new("CHAR11").load
+
+			#—§‚¿ŠG12‚Ì•`‰æ
+			when /char12/
+				@char = MaterialLoad_char.new("CHAR12").load
+
+			#—§‚¿ŠG13‚Ì•`‰æ
+			when /char13/
+				@char = MaterialLoad_char.new("CHAR13").load
+
+			#—§‚¿ŠG14‚Ì•`‰æ
+			when /char14/
+				@char = MaterialLoad_char.new("CHAR14").load
+
+			#—§‚¿ŠG15‚Ì•`‰æ
+			when /char15/
+				@char = MaterialLoad_char.new("CHAR15").load
+
+			#—§‚¿ŠG16‚Ì•`‰æ
+			when /char16/
+				@char = MaterialLoad_char.new("CHAR16").load
+
+			#—§‚¿ŠG17‚Ì•`‰æ
+			when /char17/
+				@char = MaterialLoad_char.new("CHAR17").load
+
+			#—§‚¿ŠG18‚Ì•`‰æ
+			when /char18/
+				@char = MaterialLoad_char.new("CHAR18").load
+
+			#—§‚¿ŠG19‚Ì•`‰æ
+			when /char19/
+				@char = MaterialLoad_char.new("CHAR19").load
+
+			#—§‚¿ŠG20‚Ì•`‰æ
+			when /char20/
+				@char = MaterialLoad_char.new("CHAR20").load
+		end
+
+		return @char
+	end
+end

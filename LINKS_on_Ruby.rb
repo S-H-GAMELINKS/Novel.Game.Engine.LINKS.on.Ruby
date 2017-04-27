@@ -2,7 +2,7 @@
 #ノベルゲームエンジン「LINKS」on Ruby
 
 #DXRubyなどを一括読込
-require_relative 'GAME/game_h'
+require_relative 'SYSTEM/LINKS_on_Ruby_h'
 
 #タイトル名
 Window.caption = ("ノベルゲームエンジン「LINKS」 on Ruby")
@@ -15,9 +15,9 @@ Window.loop do
 		title()
 	end
 
-	#スクリプト処理
+	#ゲームループ処理
 	if $choice != 99 then
-		script()
+		game_loop()
 	end
 end
 
