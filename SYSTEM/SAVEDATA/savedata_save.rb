@@ -70,38 +70,11 @@ def savedata_save
 		#カーソルの描画
 		Window.draw_font(50, menu_y, "□", font)
 
-		if menu_y == 300 then
-			#セーブデータ画像の描画
-			Window.draw_scale(100, -100, savedata1_screenshot, 0.5, 0.5, 1)
-		end
+		#各種スクリーンショット描画
+		savedata_screenshot_draw(savedata1_screenshot, savedata2_screenshot, savedata3_screenshot, menu_y)
 
-		if menu_y == 350 then
-			#セーブデータ画像の描画
-			Window.draw_scale(100, -100, savedata2_screenshot, 0.5, 0.5, 1)
-		end
-
-		if menu_y == 400 then
-			#セーブデータ画像の描画
-			Window.draw_scale(100, -100, savedata3_screenshot, 0.5, 0.5, 1)
-		end
-
-		#カーソルのキー操作（↑キー）
-		if Input.key_push?(K_UP) then
-			menu_y -= 50
-
-			if menu_y <= 250 then
-				menu_y = 450
-			end
-		end
-
-		#カーソルのキー操作（↓キー）
-		if Input.key_push?(K_DOWN) then
-			menu_y += 50
-
-			if menu_y >= 500 then
-				menu_y = 300
-			end
-		end
+		#キー操作関連
+		menu_y = savedata_key(menu_y)
 
 		#「セーブデータ１にセーブ」を選択した際の処理
 		if Input.key_push?(K_RETURN) && menu_y == 300 then

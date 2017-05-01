@@ -1,5 +1,5 @@
 # coding: shift_jis
-#ノベルゲームエンジン「LINKS」on Ruby
+#ノベルゲームエンジン「LINKS」on Ruby ver 0.09
 
 #DXRubyなどを一括読込
 require_relative 'SYSTEM/LINKS_on_Ruby_h'
