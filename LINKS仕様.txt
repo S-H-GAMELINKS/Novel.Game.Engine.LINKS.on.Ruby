@@ -1,26 +1,26 @@
 
-�E��{�I�Ȏg�p���@�B
+・基本的な使用方法。
 
-�܂��A�����グ�������Ȃǂ��uMAIN.txt�v���ɃR�s�[&�y�[�X�g����B
-���ɁA���g�̂킩��₷���^�O���uscript.rb�v���́udraw�v���\�b�h�̐��K�\�������ɋL�q�B
-���̃^�O���uMAIN.txt�v�̉��o�����������ɋL�q����B
+まず、書き上げた小説などを「MAIN.txt」内にコピー&ペーストする。
+次に、自身のわかりやすいタグを「script.rb」内の「draw」メソッドの正規表現部分に記述。
+そのタグを「MAIN.txt」の演出したい部分に記述する。
 
-�E������@
+・操作方法
 
-�I������^�C�g�����j���[���̍��ڑI���͏㉺�̏\���L�[�B
-�����ENTER�L�[�B���j���[��BACKSPACE�L�[�B�Q�[���̏I����ESCAPE�L�[�ƂȂ��Ă��܂��B
+選択肢やタイトルメニュー等の項目選択はマウスで操作。
+決定は右クリック。メニューは左クリック。ゲームの終了はESCAPEキーとなっています。
 
-�E�t�@�C���̔z�u���Ɋւ���
+・ファイルの配置等に関して
 
-�܂��A�e�L�����N�^�[�f�[�^�Ȃǂ��i�[����t�H���_�ɓ����t�@�C���`���͈ȉ��̒ʂ�ł���B
+また、各キャラクターデータなどを格納するフォルダに入れるファイル形式は以下の通りである。
 
-DATA/STR:TXT�`���̃t�@�C�����g�p����B�uMAIN.txt�v�ɕ�������y�[�X�g���܂��B
-	 �I�����ł̕����́uA.txt�v�A�uB.txt�v�Ƀy�[�X�g���܂��B
+DATA/STR:TXT形式のファイルを使用する。「MAIN.txt」に文字列をペーストします。
+	 選択肢での分岐後は「A.txt」、「B.txt」にペーストします。
 
-DATA/SOUNDEFFECT:WAV�`���̃t�@�C��������B
+DATA/SOUNDEFFECT:WAV形式のファイルを入れる。
 
-DATA/CHARACTER:PNG�`���̃L�����N�^�[�̗����G������ꏊ�B�Ȃ��A�T�C�Y��300�~400�̂��̂��g�p���A���ߏ������s���K�v������B
+DATA/CHARACTER:PNG形式のキャラクターの立ち絵を入れる場所。なお、サイズは300×400のものを使用し、透過処理を行う必要がある。
 
-DATA/BACKGROUNDMUSIC:WAV�`���̉��������邱�Ƃ�BGM���Đ��ł���B
+DATA/BACKGROUNDMUSIC:WAV形式の音源を入れることでBGMを再生できる。
 
-DATA/BACKGROUND:PNG�`���̔w�i�摜������ꏊ�B640�~480�̃T�C�Y���g�p����B�^�C�g���摜��"TITLE.png"
+DATA/BACKGROUND:PNG形式の背景画像を入れる場所。640×480のサイズを使用する。タイトル画像は"TITLE.png"
