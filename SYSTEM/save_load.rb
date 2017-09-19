@@ -36,12 +36,20 @@ end
 def savedata_load(number)
 	
 	#セーブデータの有無チェック
-	if File.exist?("DATA/SAVE/savedata#{number}.png") then
-		flag = File.open("DATA/SAVE/savedata#{number}_flag.txt", "r").read.to_i
-		$lineno = File.open("DATA/SAVE/savedata#{number}_lineno.txt", "r").read.to_i
+	if File.exist?("DATA/SAVE/savedata#{number}.save") then
+
+		data = File.open("DATA/SAVE/savedata#{number}.save", "r+")
+		save = data.read
+		save.gsub!(/#<struct Struct::SaveData flag=| linno=|>/, "")
+
+		Flag.set(save.gsub(/,\d/, "").to_i)
+		Lineno.set(save.gsub(/\d,/, "").to_i)
+
+		flag = save.gsub(/,\d/, "").to_i
+		$lineno = save.gsub(/\d,/, "").to_i
 		return flag
 	else
-		#load_error_messageを出す予定
+		messagebox.Popup("セーブデータ#{number}はありません！", 0, "ノベルゲームエンジン「LINKS」on Ruby", 1 + 48 )
 	end
 end
 
@@ -49,8 +57,10 @@ end
 def savedata_save(number, flag, lineno)
 
 	#ルート管理変数の書き込み（セーブデータの書き込み)
-	File.write("DATA/SAVE/savedata#{number}_flag.txt", flag.to_s)
-	File.write("DATA/SAVE/savedata#{number}_lineno.txt", lineno.to_s)
+	savedata = Struct.new("SaveData", :flag, :linno)
+	data = savedata.new(Flag.ref, lineno)
+
+	File.write("DATA/SAVE/savedata#{number}.save", data)
 	File.rename("DATA/SAVE/savedata.png", "DATA/SAVE/savedata#{number}.png")
 end
 
@@ -58,13 +68,12 @@ end
 def savedata_delete(number)
 
 	#セーブデータの有無チェック
-	if File.exist?("DATA/SAVE/savedata#{number}.png") then
+	if File.exist?("DATA/SAVE/savedata#{number}.save") then
 		#セーブデータの削除
-		File.delete("DATA/SAVE/savedata#{number}_flag.txt")
-		File.delete("DATA/SAVE/savedata#{number}_lineno.txt")
+		File.delete("DATA/SAVE/savedata#{number}.save")
 		File.delete("DATA/SAVE/savedata#{number}.png")
 	else
-		#delete_error_messageを出す予定
+		messagebox.Popup("セーブデータ#{number}はありません！", 0, "ノベルゲームエンジン「LINKS」on Ruby", 1 + 48 )
 	end
 end
 
